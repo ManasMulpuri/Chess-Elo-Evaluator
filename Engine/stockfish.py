@@ -40,11 +40,8 @@ class StockfishEngine(Engine):
 
     @elo.setter
     def elo(self, elo: int) -> None:
-        if elo >= 1350 and elo <= 2850:
-            self._elo = elo
-            self._engine.configure({"UCI_LimitStrength": True, "UCI_Elo": elo})
-        else:
-            raise ValueError("Elo must be in the range [1350, 2850].")
+        self._elo = elo
+        self._engine.configure({"UCI_LimitStrength": True, "UCI_Elo": elo})
 
     def analyse(self, board: chess.Board):
         """Analyzes the position and returns Stockfish's evaluation."""
